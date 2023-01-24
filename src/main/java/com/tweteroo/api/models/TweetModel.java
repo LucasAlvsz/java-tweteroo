@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 public class TweetModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false, length = 280)
     private String content;

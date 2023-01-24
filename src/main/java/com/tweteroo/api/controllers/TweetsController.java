@@ -16,7 +16,7 @@ public class TweetsController {
         System.out.println("Tweet get");
     }
 
-    @GetMapping("{/username}")
+    @GetMapping("/{username}")
     public void getTweetsByUsername(@PathVariable String username){
         System.out.println("Tweet get by " + username);
     }

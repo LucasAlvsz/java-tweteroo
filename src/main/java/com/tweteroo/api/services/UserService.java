@@ -1,4 +1,28 @@
 package com.tweteroo.api.services;
 
+import com.tweteroo.api.dto.UserDTO;
+import com.tweteroo.api.models.UserModel;
+import com.tweteroo.api.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
 public class UserService {
+
+    private final UserRepository userRepository;
+
+    @Autowired
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    public void saveUser(UserDTO userDTO) {
+        userRepository.save(new UserModel(userDTO));
+    }
+
+    public List<UserModel> getAllUsers() {
+        return userRepository.findAll();
+    }
 }
