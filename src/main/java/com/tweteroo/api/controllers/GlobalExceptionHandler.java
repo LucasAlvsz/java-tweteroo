@@ -2,6 +2,7 @@ package com.tweteroo.api.controllers;
 
 import com.tweteroo.api.erros.AppErrorResponse;
 import com.tweteroo.api.erros.NotFoundError;
+import com.tweteroo.api.erros.UnprocessableEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -16,6 +17,16 @@ public class GlobalExceptionHandler {
     public AppErrorResponse handleNotFoundError(NotFoundError e) {
         AppErrorResponse error = new AppErrorResponse();
         error.setStatus(HttpStatus.NOT_FOUND.value());
+        error.setMessage(e.getMessage());
+        return error;
+    }
+
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    @ExceptionHandler(UnprocessableEntity.class)
+    @ResponseBody
+    public AppErrorResponse handleUnprocessableEntity(UnprocessableEntity e) {
+        AppErrorResponse error = new AppErrorResponse();
+        error.setStatus(HttpStatus.UNPROCESSABLE_ENTITY.value());
         error.setMessage(e.getMessage());
         return error;
     }

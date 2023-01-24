@@ -30,4 +30,12 @@ public class UserService {
     public UserModel getUserById(Long id) throws NotFoundError {
         return userRepository.findById(id).orElseThrow(() -> new NotFoundError("User not found"));
     }
+
+    public UserModel getUserByUsername(String username) throws NotFoundError {
+        UserModel user = userRepository.findByUsername(username);
+        if (user == null)
+            throw new NotFoundError("User: '" + username + "' not found");
+
+        return user;
+    }
 }
