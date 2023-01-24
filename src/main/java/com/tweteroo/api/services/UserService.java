@@ -1,6 +1,7 @@
 package com.tweteroo.api.services;
 
 import com.tweteroo.api.dto.UserDTO;
+import com.tweteroo.api.erros.NotFoundError;
 import com.tweteroo.api.models.UserModel;
 import com.tweteroo.api.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,9 @@ public class UserService {
 
     public List<UserModel> getAllUsers() {
         return userRepository.findAll();
+    }
+
+    public UserModel getUserById(Long id) throws NotFoundError {
+        return userRepository.findById(id).orElseThrow(() -> new NotFoundError("User not found"));
     }
 }

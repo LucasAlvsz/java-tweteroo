@@ -4,6 +4,7 @@ import com.tweteroo.api.dto.UserDTO;
 import com.tweteroo.api.models.UserModel;
 import com.tweteroo.api.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,8 +20,8 @@ public class AuthController {
     }
 
     @PostMapping("/sign-up")
+    @ResponseStatus(HttpStatus.CREATED)
     public void create(@RequestBody UserDTO req){
-        System.out.println(req);
         userService.saveUser(req);
     }
 

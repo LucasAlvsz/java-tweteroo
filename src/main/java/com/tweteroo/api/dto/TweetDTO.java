@@ -1,4 +1,4 @@
 package com.tweteroo.api.dto;
 
-public record TweetDTO(String content, String username) {
+public record TweetDTO(String content, Long userId) {
 }

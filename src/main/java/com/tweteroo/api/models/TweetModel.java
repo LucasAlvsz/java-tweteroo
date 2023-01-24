@@ -1,8 +1,18 @@
 package com.tweteroo.api.models;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
+@Data
+@Entity
 public class TweetModel {
+
+    public TweetModel() {
+    }
+    public TweetModel(String content, UserModel user) {
+        this.content = content;
+        this.user = user;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -10,9 +20,9 @@ public class TweetModel {
     @Column(nullable = false, length = 280)
     private String content;
 
-    @Column(nullable = false)
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserModel user;
+
 
 }
